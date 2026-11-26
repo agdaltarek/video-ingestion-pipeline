@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "video-ingestion"
+version = "0.1.0"
+description = "Video ingestion and pre-processing pipeline for sports computer vision"
+requires-python = ">=3.11"
+# Runtime deps are intentionally managed by conda (environment.yml), NOT here.
+# This avoids pip reinstalling opencv/numpy on top of the conda builds and
+# triggering an ABI conflict. See README.
+dependencies = []
+
+[project.scripts]
+video-ingest = "pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

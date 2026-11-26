@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+env/
+
+# Project data & outputs (never commit footage)
+data/
+output/
+*.mp4
+*.mkv
+*.avi
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+
+
+# Coverage reports
+htmlcov/
+
+# Benchmark temp videos
+benchmarks/tmp_videos/
+
+# exclude specific video files in the data directory
+data/sports_footage.*
+data/*.avi
+data/*.mkv

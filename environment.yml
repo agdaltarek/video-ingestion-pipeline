@@ -1,0 +1,26 @@
+name: video-ingest
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - ffmpeg
+  - opencv
+  - numpy
+  - pyyaml
+  - pytest
+  - pytest-cov
+  - matplotlib
+  - pip
+  - pip:
+    # Install order matters on Windows: conda-forge libs (above) must be
+    # present before these pip wheels to avoid a cv2/torch DLL clash.
+    # torch is pulled from the official CPU wheel index, not PyPI.
+    - --index-url https://download.pytorch.org/whl/cpu
+    - --extra-index-url https://pypi.org/simple
+    - torch
+    - torchvision
+    - --index-url https://pypi.org/simple
+    - scenedetect[opencv]
+    - ultralytics
+    - psutil
+    - gradio

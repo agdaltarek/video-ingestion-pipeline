@@ -1,0 +1,64 @@
+# Video ingestion pipeline configuration.
+# Each section is wired in at the step that needs it (see README roadmap).
+
+logging:
+  level: INFO
+
+extraction:
+  mode: interval
+  every_n_frames: 5
+  target_fps: 2.0
+  output_dir: output
+
+transforms:
+  resize:
+    enabled: true
+    width: 640
+    height: 360
+    keep_aspect_ratio: true
+  colour_space:
+    enabled: true
+    mode: rgb
+
+quality:
+  blur:
+    enabled: true
+    threshold: 75.0      # calibrated on real broadcast footage (test feed):
+                          # avg sharp frame ~230, blurry pan ~75-99
+                          # lower to 75.0 to reduce false positives on pans
+  brightness:
+    enabled: true
+    low_threshold: 30.0
+    high_threshold: 225.0
+  flag_only: true
+
+scenes:
+  method: histogram
+  histogram:
+    bins: 64
+    threshold: 0.4
+    adaptive: true
+    adaptive_window: 10
+    min_scene_length: 15
+    min_absolute_threshold: 0.05
+
+output:
+  format: jpg              # "jpg" or "png"
+  jpg_quality: 95          # only used when format = jpg (0-100)
+  save_keyframes_only: false  # true = only write the first frame of each scene
+  write_manifest: true
+  manifest_filename: manifest.json
+
+inference:
+  enabled: true
+  model: yolov8n.pt          # nano — fastest, CPU-friendly
+  confidence: 0.25           # minimum detection confidence
+  device: cpu                # "cpu" or "0" for first GPU
+  max_frames: 5              # number of frames to run inference on (demo mode)
+  save_annotated: true       # write annotated frames to disk
+
+stream:
+  every_n_frames: 5
+  max_frames: 50            # cap for demo/testing; None = unlimited
+  connection_timeout_s: 10.0
+  max_retries: 3

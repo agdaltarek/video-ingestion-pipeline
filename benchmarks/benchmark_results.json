@@ -1,0 +1,62 @@
+[
+  {
+    "video": "480p_10s.mp4",
+    "resolution": "854x480",
+    "duration_s": 10.0,
+    "total_frames": 250,
+    "extracted_frames": 50,
+    "elapsed_s": 1.11,
+    "throughput_fps": 224.3,
+    "speedup_vs_rt": 8.97,
+    "mem_before_mb": 79.4,
+    "mem_after_mb": 85.4,
+    "mem_delta_mb": 6.0,
+    "cpu_pct": 177.8,
+    "scenes_detected": 1
+  },
+  {
+    "video": "480p_30s.mp4",
+    "resolution": "854x480",
+    "duration_s": 30.0,
+    "total_frames": 750,
+    "extracted_frames": 150,
+    "elapsed_s": 3.0,
+    "throughput_fps": 249.6,
+    "speedup_vs_rt": 9.99,
+    "mem_before_mb": 86.2,
+    "mem_after_mb": 86.1,
+    "mem_delta_mb": -0.1,
+    "cpu_pct": 165.6,
+    "scenes_detected": 1
+  },
+  {
+    "video": "1080p_10s.mp4",
+    "resolution": "1920x1080",
+    "duration_s": 10.0,
+    "total_frames": 250,
+    "extracted_frames": 50,
+    "elapsed_s": 4.78,
+    "throughput_fps": 52.3,
+    "speedup_vs_rt": 2.09,
+    "mem_before_mb": 86.3,
+    "mem_after_mb": 87.2,
+    "mem_delta_mb": 0.8,
+    "cpu_pct": 162.7,
+    "scenes_detected": 1
+  },
+  {
+    "video": "1080p_30s.mp4",
+    "resolution": "1920x1080",
+    "duration_s": 30.0,
+    "total_frames": 750,
+    "extracted_frames": 150,
+    "elapsed_s": 14.48,
+    "throughput_fps": 51.8,
+    "speedup_vs_rt": 2.07,
+    "mem_before_mb": 87.4,
+    "mem_after_mb": 87.2,
+    "mem_delta_mb": -0.2,
+    "cpu_pct": 165.8,
+    "scenes_detected": 1
+  }
+]

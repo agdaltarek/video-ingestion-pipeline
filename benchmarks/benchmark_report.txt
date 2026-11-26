@@ -1,0 +1,45 @@
+======================================================================
+  VIDEO INGESTION PIPELINE — PERFORMANCE BENCHMARK REPORT
+======================================================================
+
+  Platform    : win32
+  CPU cores   : 12 logical
+  RAM total   : 15.9 GB
+
+----------------------------------------------------------------------
+  Video                       Res    Dur  Frames  Time(s)     FPS   Speed  RAM+MB
+----------------------------------------------------------------------
+  480p_10s.mp4            854x480    10s     250      1.1   224.3    9.0x     6.0
+  480p_30s.mp4            854x480    30s     750      3.0   249.6   10.0x    -0.1
+  1080p_10s.mp4         1920x1080    10s     250      4.8    52.3    2.1x     0.8
+  1080p_30s.mp4         1920x1080    30s     750     14.5    51.8    2.1x    -0.2
+----------------------------------------------------------------------
+
+  Columns:
+    Res     = source resolution
+    Dur     = video duration in seconds
+    Frames  = total frames in source video
+    Time(s) = wall-clock processing time
+    FPS     = frames scanned per second
+    Speed   = processing speed vs real-time (>1.0 = faster than RT)
+    RAM+MB  = peak memory increase during processing
+
+  Notes:
+    - Benchmarks run on synthetic video (CPU-only, no GPU)
+    - Every 5th frame extracted and transformed to 640x360 RGB
+    - Scene detection runs on all frames; frame write on extracted only
+    - First run may be slower due to filesystem cache cold start
+======================================================================
+
+CPU Utilisation (observed during 1080p_30s run):
+    Scene detection phase : ~85-95% single core (histogram computation)
+    Frame write phase     : ~60-70% single core (JPEG encoding)
+    Overall pipeline      : single-threaded, one core saturated
+    
+  Bottleneck analysis:
+    480p  bottleneck: scene detection (scanning all frames)
+    1080p bottleneck: pixel-level operations (resize + histogram) on larger frames
+    
+  Proposed optimisation:
+    Parallelise scene detection and frame extraction using multiprocessing.
+    GPU-accelerated resize via cv2.cuda would reduce 1080p time significantly.
