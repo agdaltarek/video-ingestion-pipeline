@@ -27,7 +27,7 @@ direct consumption by a CV inference service (YOLOv8).
 ## Project Structure
 
 ```text
-video-ingestion/
+video-ingestion-pipeline/
 ├── README.md
 ├── pyproject.toml
 ├── config.yaml                  # all tunable parameters
@@ -67,8 +67,8 @@ video-ingestion/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/video-ingestion.git
-cd video-ingestion
+git clone https://github.com/agdaltarek/video-ingestion-pipeline.git
+cd video-ingestion-pipeline
 ```
 
 ### 2. Create the conda environment
